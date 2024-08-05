@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { IoSearch } from "react-icons/io5";
 
@@ -10,9 +11,15 @@ const Header = () => {
         </div>
         <div>
           <ul className="flex gap-4 font-normal text-[16px] text-gray-600">
-            <li>Home</li>
-            <li>Blog</li>
-            <li>Contact</li>
+            <li>
+              <Link href="/">Home</Link>
+            </li>
+            <li>
+              <Link href="/blog">Blog</Link>
+            </li>
+            <li>
+              <Link href="contact">Contact</Link>
+            </li>
           </ul>
         </div>
         <button className="flex items-center bg-gray-200 px-2 py-1 rounded-md">
