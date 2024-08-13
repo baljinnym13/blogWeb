@@ -1,3 +1,4 @@
+import { MyContext } from "@/provider/provider";
 import Link from "next/link";
 import React from "react";
 import { IoSearch } from "react-icons/io5";
@@ -7,6 +8,10 @@ const headerMenuList = [
   { text: "Contact", link: "/contact" },
 ];
 const Header = () => {
+  // const { setSearchValue } = useContext(MyContext);
+  // const handleChange = (e) => {
+  //   setSearchValue(e.target.value);
+  // };
   return (
     <div className="py-8 mb-[100px]">
       <div className="w-9/12 flex justify-between items-center m-auto pr-20">
@@ -23,11 +28,12 @@ const Header = () => {
           </ul>
         </div>
         <button className="flex items-center bg-gray-200 px-2 py-1 rounded-md">
-          <input
+          {/* <input
             className=" bg-gray-200 text-black focus:outline-none placeholder-gray-400"
             type="text"
             placeholder="Search"
-          />
+            onChange={handleChange}
+          /> */}
           <IoSearch />
         </button>
       </div>
