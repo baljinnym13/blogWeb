@@ -17,15 +17,15 @@ const MyProvider = ({ children }) => {
       );
       const data = await response.json();
       setArticles(data);
-      //   setArticles((prevArticles) => {
-      //     console.log("prevArticles", prevArticles);
-      //     const newArticles = data.filter(
-      //       (article) =>
-      //         !prevArticles.some((prevArticle) => prevArticle.id === article.id)
-      //     );
-      //     return [...prevArticles, ...newArticles];
-      //   });
-      //   setIsLoading(false);
+      // setArticles((prevArticles) => {
+      //   console.log("prevArticles", prevArticles);
+      //   const newArticles = data.filter(
+      //     (article) =>
+      //       !prevArticles.some((prevArticle) => prevArticle.id === article.id)
+      //   );
+      //   return [...prevArticles, ...newArticles];
+      // });
+      // setIsLoading(false);
     } catch (error) {
       console.log("er", error);
       setIsLoading(false);
