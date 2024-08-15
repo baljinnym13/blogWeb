@@ -11,7 +11,6 @@ const Blog = () => {
   };
   useEffect(() => {
     getArrticle();
-    console.log("articles", articles);
   }, []);
   return (
     <div>

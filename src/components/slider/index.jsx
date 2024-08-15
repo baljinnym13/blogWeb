@@ -6,27 +6,17 @@ import SliderCard from "./sliderCard";
 
 const Slider = () => {
   const [articles, setArticles] = useState([]);
-  const [curIndex, setCurIndex] = useState(0);
 
   useEffect(() => {
     getArrticle(5, setArticles);
   }, []);
-  // const nextclick = () => {
-  //   setCurIndex(() => {
-  //     return curIndex < articles.length - 1 ? curIndex + 1 : 0;
-  //   });
-  // };
-  // const prevclick = () => {
-  //   setCurIndex(() => {
-  //     return curIndex > 0 ? curIndex - 1 : articles.length - 1;
-  //   });
-  // };
+
   let [currentIndex, setCurrentIndex] = useState(0);
 
   return (
-    <div className="slideCard hidden md:block relative  my-24 m-auto overflow-hidden w-9/12 ">
+    <div className=" md:block relative  my-24 m-auto  w-9/12 overflow-hidden">
       <div
-        className=" flex transition-all ease-out duration-150 "
+        className=" flex  h-[550px] w-full transition-all ease-out duration-150 "
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {articles.map((article, i) => (
@@ -68,5 +58,3 @@ const Slider = () => {
 };
 
 export default Slider;
-// className="flex transition-all ease-out duration-150"
-// style={{ transform: `translateX(-${currentIndex * 100}%)` }}

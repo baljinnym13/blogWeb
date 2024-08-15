@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import Blogpostcard from "./blogpostcad";
 import Link from "next/link";
 const postMenuList = [
@@ -10,18 +9,16 @@ const postMenuList = [
   { text: "Branding" },
 ];
 
-const Blogpost = ({ bloglist, handleClick, handleClicked, style }) => {
+const Blogpost = ({ bloglist, handleClick }) => {
   return (
     <div className="w-9/12 m-auto mt-[100px]">
       <h1 className="mb-8 text-2xl font-bold">All Blog Post</h1>
       <div className="flex justify-between mb-8">
         {
           <ul className="flex gap-5 font-bold text-xs">
-            {postMenuList.map(({ text, link }, idx) => (
+            {postMenuList.map(({ text }, idx) => (
               <li key={idx}>
-                <button className={style} onClick={handleClicked}>
-                  {text}
-                </button>
+                <button>{text}</button>
               </li>
             ))}
           </ul>
