@@ -1,20 +1,17 @@
 import Blogpost from "@/components/blogpost/blogpost";
-import React, { useEffect, useState } from "react";
-
+import React, { useContext } from "react";
+import { MyContext } from "@/provider/provider";
 const Blog = () => {
-  const [articles, setArticles] = useState([]);
-  const getArrticle = async () => {
-    const res = await fetch("https://dev.to/api/articles");
-    const data = await res.json();
-    setArticles(data);
-    console.log("data", data);
-  };
-  useEffect(() => {
-    getArrticle();
-  }, []);
+  const { articles, isLoading, handleLoadMore } = useContext(MyContext);
+
   return (
     <div>
-      <Blogpost bloglist={articles} />
+      <Blogpost
+        bloglist={articles}
+        handleClick={handleLoadMore}
+        isLoading={isLoading}
+        style="hidden"
+      />
     </div>
   );
 };

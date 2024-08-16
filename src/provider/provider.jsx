@@ -6,44 +6,52 @@ export const MyContext = createContext(null);
 const MyProvider = ({ children }) => {
   const [searchValue, setSearchValue] = useState("");
   const [articles, setArticles] = useState([]);
-  const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+  const [count, setCount] = useState(3);
+  const [trendPosts, setTrendPosts] = useState([]);
+
+  const getTrendPost = async () => {
+    const res = await fetch(`https://dev.to/api/articles?top=1&per_page=4`);
+    const data = await res.json();
+    setTrendPosts(data);
+  };
+  useEffect(() => {
+    getTrendPost();
+  }, [trendPosts]);
 
   const getArticleData = async () => {
     try {
       setIsLoading(true);
       const response = await fetch(
-        `https://dev.to/api/artic?page=${page}&per_page=20`
+        `https://dev.to/api/articles?page=1&per_page=${count}`
       );
       const data = await response.json();
+      setIsLoading(false);
       setArticles(data);
-      // setArticles((prevArticles) => {
-      //   console.log("prevArticles", prevArticles);
-      //   const newArticles = data.filter(
-      //     (article) =>
-      //       !prevArticles.some((prevArticle) => prevArticle.id === article.id)
-      //   );
-      //   return [...prevArticles, ...newArticles];
-      // });
-      // setIsLoading(false);
     } catch (error) {
       console.log("er", error);
       setIsLoading(false);
-      toast.success("Алдаа гарлаа. Та дахин оролдоно уу");
     }
   };
 
   const handleLoadMore = () => {
-    setPage((prevPage) => prevPage + 1);
+    setCount(count + 3);
   };
 
   useEffect(() => {
     getArticleData();
-  }, []);
+  }, [count]);
 
   return (
     <MyContext.Provider
-      value={{ searchValue, setSearchValue, articles, isLoading }}
+      value={{
+        searchValue,
+        setSearchValue,
+        articles,
+        isLoading,
+        handleLoadMore,
+        trendPosts,
+      }}
     >
       {children}
     </MyContext.Provider>

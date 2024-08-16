@@ -1,3 +1,4 @@
+import Loader from "../loader";
 import Blogpostcard from "./blogpostcad";
 import Link from "next/link";
 const postMenuList = [
@@ -9,11 +10,11 @@ const postMenuList = [
   { text: "Branding" },
 ];
 
-const Blogpost = ({ bloglist, handleClick }) => {
+const Blogpost = ({ bloglist, handleClick, isLoading, style }) => {
   return (
     <div className="w-9/12 m-auto mt-[100px]">
       <h1 className="mb-8 text-2xl font-bold">All Blog Post</h1>
-      <div className="flex justify-between mb-8">
+      <div className={`${style} flex justify-between mb-8`}>
         {
           <ul className="flex gap-5 font-bold text-xs">
             {postMenuList.map(({ text }, idx) => (
@@ -28,9 +29,7 @@ const Blogpost = ({ bloglist, handleClick }) => {
           View All
         </Link>
       </div>
-      <div>
-        <Blogpostcard bloglist={bloglist} />
-      </div>
+      <div>{isLoading ? <Loader /> : <Blogpostcard bloglist={bloglist} />}</div>
       <div className="flex justify-center">
         <button
           onClick={handleClick}

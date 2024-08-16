@@ -1,16 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Trendcard from "./trendcard";
-
+import { MyContext } from "@/provider/provider";
 const Trending = () => {
-  const [trendPosts, setTrendPosts] = useState([]);
-  const getTrendPost = async () => {
-    const res = await fetch(`https://dev.to/api/articles?top=1&per_page=4`);
-    const data = await res.json();
-    setTrendPosts(data);
-  };
-  useEffect(() => {
-    getTrendPost();
-  }, [trendPosts]);
+  const { trendPosts } = useContext(MyContext);
   return (
     <div className="w-9/12 m-auto mt-28">
       <h1 className="font-bold text-[24px]">Trending</h1>

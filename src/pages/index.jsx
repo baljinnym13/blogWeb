@@ -1,26 +1,20 @@
 import Slider from "@/components/slider";
 import Trending from "@/components/trending";
 import Blogpost from "@/components/blogpost/blogpost";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { MyContext } from "@/provider/provider";
-import { getArrticle } from "@/fetch";
 
 export default function Home() {
-  const [articles, setArticles] = useState([]);
-  const [count, setCount] = useState(21);
-
-  useEffect(() => {
-    getArrticle(count, setArticles);
-  }, [count]);
-  const handleClick = () => {
-    setCount(count + 3);
-  };
-
+  const { articles, isLoading, handleLoadMore } = useContext(MyContext);
   return (
     <main>
       <Slider />
       <Trending />
-      <Blogpost bloglist={articles} handleClick={handleClick} />
+      <Blogpost
+        bloglist={articles}
+        handleClick={handleLoadMore}
+        isLoading={isLoading}
+      />
     </main>
   );
 }

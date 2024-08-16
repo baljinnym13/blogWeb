@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const menu = [
   { label: "Home", link: "/" },
-  { label: "Blog", link: "/blogs" },
+  { label: "Blog", link: "/blog" },
   { label: "Contact", link: "/contact" },
 ];
 
